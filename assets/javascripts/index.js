@@ -4,6 +4,14 @@ new Vue({
         newEntry : "",
         todos:[] // {value:String, isDone: boolean}
     },
+    watch: {
+        todos :{
+            handler: function(newTodos){
+                sessionStorage.setItem('my-tofo-list',JSON.stringify(newTodos))
+            },
+            deep: true
+        }
+    },
     methods: {
         addEntry:function(){
             if(this.newEntry){
@@ -14,5 +22,17 @@ new Vue({
         removeEntry:function(index){
            this.todos.splice(index,1);
         }
+    },
+    beforeCreate() {
+        console.log('before create');
+    },
+    created() {
+        console.log('created');
+    },
+    beforeMount() {
+        console.log('before mount');
+    },
+    mounted() {
+        console.log('mounted');
     },
 })
