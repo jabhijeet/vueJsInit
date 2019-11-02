@@ -4,6 +4,11 @@ new Vue({
         newEntry : "",
         todos:[] // {value:String, isDone: boolean}
     },
+    computed: {
+        unfinishedItems:function(){
+            return this.todos.filter(entry => !entry.isDone);
+        }
+    },
     watch: {
         todos :{
             handler: function(newTodos){
@@ -21,7 +26,7 @@ new Vue({
         },
         removeEntry:function(index){
            this.todos.splice(index,1);
-        }
+        },
     },
     beforeCreate() {
         console.log('before create');

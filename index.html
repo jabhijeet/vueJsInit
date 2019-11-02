@@ -12,8 +12,11 @@
     <div id="app">
         <h1>My TO-DO List</h1>
         <input type="text" name="entry" v-model="newEntry" v-on:keyup.enter="addEntry">
+        <p v-if="unfinishedItems.length>1">Unfinished Items : {{unfinishedItems.length}}</p>
+        <p v-else-if="unfinishedItems.length==1">Just 1 more to go...</p>
+        <p v-else>Hooorrreyyyyy! Completed All...</p>
         <div class="items">
-            <div class="item" v-for="(entry, index) in todos">
+            <div class="item" v-for="(entry, index) in todos" v-bind:class="{done: entry.isDone}">
                 <input type="checkbox" name="isDone" v-model="entry.isDone">
                 {{entry.value}}
                 <a class="close" v-on:click="removeEntry(index)">X</a>
