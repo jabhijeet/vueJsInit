@@ -7,7 +7,7 @@ new Vue({
     watch: {
         todos :{
             handler: function(newTodos){
-                sessionStorage.setItem('my-tofo-list',JSON.stringify(newTodos))
+                sessionStorage.setItem('my-todo-list',JSON.stringify(newTodos))
             },
             deep: true
         }
@@ -34,5 +34,7 @@ new Vue({
     },
     mounted() {
         console.log('mounted');
+        const ssTodos = sessionStorage.getItem('my-todo-list');
+        this.todos = ssTodos ? JSON.parse(ssTodos) : [] ;
     },
 })
